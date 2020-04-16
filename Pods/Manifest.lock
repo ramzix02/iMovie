@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (4.9.1)
+  - BTNavigationDropdownMenu (0.5)
+  - Cosmos (20.0.1)
+  - ReachabilitySwift (3)
+  - SDWebImage (5.4.0):
+    - SDWebImage/Core (= 5.4.0)
+  - SDWebImage/Core (5.4.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - BTNavigationDropdownMenu
+  - Cosmos (~> 20.0)
+  - ReachabilitySwift (~> 3.0)
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - BTNavigationDropdownMenu
+    - Cosmos
+    - ReachabilitySwift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  BTNavigationDropdownMenu: ba3a26fdb6a56c4721c31df8a0875106c259663a
+  Cosmos: b47fddf2102bb48580cd3025d9ce0a5c658a65da
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
+
+PODFILE CHECKSUM: e0c53d5e618025b9a1aad5c2fe70d6266ce0b763
+
+COCOAPODS: 1.8.4
