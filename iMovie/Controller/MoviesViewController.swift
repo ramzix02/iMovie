@@ -2,7 +2,11 @@
 import UIKit
 import BTNavigationDropdownMenu
 
-class MoviesViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout{
+class MoviesViewController: UIViewController {
+    
+    let mostPopularURL = "https://api.themoviedb.org/3/discover/movie?api_key=61719a042a2b3abfbe5c5e2588b4e408"
+    let topRatedURL = "https://api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=61719a042a2b3abfbe5c5e2588b4e408"
+    let imageURL = "https://image.tmdb.org/t/p/w185/"
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnMenue: UIBarButtonItem!
@@ -19,19 +23,14 @@ class MoviesViewController: UIViewController , UICollectionViewDataSource , UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         SV = (self.storyboard?.instantiateViewController(withIdentifier: "sec") as! ViewController)
-       // arr = []
+
         
         if(ReachabilityNetwork.getReachabilityInfo())
         {
             SavedCoreDataHandler.fetchCoreDataFucn()
             SavedCoreDataHandler.deleteCoreDataFucn()
-            networkFucn(strUrl: "https://api.themoviedb.org/3/discover/movie?api_key=61719a042a2b3abfbe5c5e2588b4e408")
+            networkFucn(strUrl: mostPopularURL)
             
-           // print("2")
-//            for item in arr!{
-//                print("1")
-//                SavedCoreDataHandler.saveCoreDataFucn(modelObj: item)
-//            }
             
         }else{
             arr = SavedCoreDataHandler.fetchCoreDataFucn()
@@ -45,23 +44,13 @@ class MoviesViewController: UIViewController , UICollectionViewDataSource , UICo
         
         menuView?.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
             if indexPath == 0 {
-                self?.networkFucn(strUrl: "https://api.themoviedb.org/3/discover/movie?api_key=61719a042a2b3abfbe5c5e2588b4e408")
+                self?.networkFucn(strUrl: self!.mostPopularURL)
             } else if indexPath == 1{
-                self!.networkFucn(strUrl: "https://api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=61719a042a2b3abfbe5c5e2588b4e408")
+                self!.networkFucn(strUrl: self!.topRatedURL)
                 
             }
         }
     }
-    
-    @IBAction func btnMenueClick(_ sender: Any) {
-       
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     
     
     func networkFucn( strUrl : String ) -> Void {
@@ -106,6 +95,10 @@ class MoviesViewController: UIViewController , UICollectionViewDataSource , UICo
             }
 
         }
+
+}
+
+extension MoviesViewController : UICollectionViewDataSource , UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (arr?.count)!
@@ -113,21 +106,24 @@ class MoviesViewController: UIViewController , UICollectionViewDataSource , UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        var url2 = URL(string :"https://image.tmdb.org/t/p/w185/\(arr![indexPath.row].image)")
+        let url2 = URL(string :"\(imageURL)\(arr![indexPath.row].image)")
         cell.imgView?.sd_setImage(with: url2, completed: nil)
        
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         SV?.objMovie = arr![indexPath.row]
         self.navigationController?.pushViewController(SV!, animated: true)
     }
+}
 
+
+
+extension MoviesViewController : UICollectionViewDelegateFlowLayout{
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
         return CGSize(width: width/2, height: height/2.3)
     }
-
 }
-

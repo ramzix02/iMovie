@@ -1,7 +1,7 @@
 
 
 import Foundation
-class TrailerModel{
+struct TrailerModel{
     var name : String = ""
     var key :String = ""
 }

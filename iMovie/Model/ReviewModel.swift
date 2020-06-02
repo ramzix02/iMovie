@@ -1,7 +1,7 @@
 
 
 import Foundation
-class ReviewModel{
+struct ReviewModel{
     var author : String = ""
     var url :String = ""
     var content :String = ""

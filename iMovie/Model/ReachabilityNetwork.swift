@@ -19,28 +19,6 @@ class ReachabilityNetwork{
             return false
         }
         
-//        reachability!.whenReachable = { reachability in
-//            if reachability.currentReachabilityStatus == .reachableViaWiFi {
-//                print("Reachable via WiFi")
-//            } else {
-//                print("Reachable via Cellular")
-//            }
-//            self.flag = true
-//        }
-//        reachability!.whenUnreachable = { _ in
-//            print("Not reachable")
-//            self.flag = false
-//        }
-//
-//        do {
-//            try reachability!.startNotifier()
-//        } catch {
-//            print("Unable to start notifier")
-//           // self.flag = false
-//        }
-//        reachability!.stopNotifier()
-//        print(flag)
-//        return flag
    }
 }
 
